@@ -8,7 +8,7 @@ It will keep move log.
 Theo dõi, duy trì trạng thái cờ vua, lưu giữ các logic về các nước di chuyển trong cờ vua
 """
 class GameState:
-    """NhatHoang"""
+    
     def __init__(self):
 
         self.board = [
@@ -37,7 +37,7 @@ class GameState:
         self.castle_rights_log = [CastleRights(self.current_castling_rights.wks, self.current_castling_rights.bks,
                                                self.current_castling_rights.wqs, self.current_castling_rights.bqs)]
 
-    """NhatHoang"""
+   
     def makeMove(self, move):
         """
         Takes a Move as a parameter and executes it.
@@ -88,7 +88,7 @@ class GameState:
         self.castle_rights_log.append(CastleRights(self.current_castling_rights.wks, self.current_castling_rights.bks,
                                                    self.current_castling_rights.wqs, self.current_castling_rights.bqs))
 
-    """NhatHoang"""
+    
     def undoMove(self):
         """
         Undo the last move
@@ -126,12 +126,12 @@ class GameState:
             self.checkmate = False
             self.stalemate = False
 
-    """NhatHoang"""
+   
     def undoTwoMoves(self):
         for _ in range(2):
             self.undoMove()
 
-    """NhatHoangg"""
+   
     def updateCastleRights(self, move):
         """
         Update the castle rights given the move
@@ -238,7 +238,7 @@ class GameState:
         else:
             return self.squareUnderAttack(self.black_king_location[0], self.black_king_location[1])
 
-    """NhatHoang"""
+   
     def squareUnderAttack(self, row, col):
         """
         Determine if enemy can attack the square row col
@@ -250,7 +250,7 @@ class GameState:
             if move.end_row == row and move.end_col == col:  # square is under attack
                 return True
         return False
-    """Hung"""
+  
     def getAllPossibleMoves(self):
         """
         All moves without considering checks.
@@ -264,7 +264,7 @@ class GameState:
                     self.moveFunctions[piece](row, col, moves)  # calls appropriate move function based on piece type
         return moves
 
-    """NhatHoang"""
+   
     def checkForPinsAndChecks(self):
         pins = []  # squares pinned and the direction its pinned from
         checks = []  # squares where enemy is applying a check
@@ -328,7 +328,7 @@ class GameState:
                     in_check = True
                     checks.append((end_row, end_col, move[0], move[1]))
         return in_check, pins, checks
-    """Hung"""
+  
     def getPawnMoves(self, row, col, moves):
         """
         Get all the pawn moves for the pawn located at row, col and add the moves to the list.
@@ -535,8 +535,6 @@ class GameState:
                         self.white_king_location = (row, col)
                     else:
                         self.black_king_location = (row, col)
-
-    """NhatHoang"""
     def getCastleMoves(self, row, col, moves):
         """
         Generate all valid castle moves for the king at (row, col) and add them to the list of moves.
@@ -550,13 +548,13 @@ class GameState:
                 not self.white_to_move and self.current_castling_rights.bqs):
             self.getQueensideCastleMoves(row, col, moves)
 
-    """NhatHoang"""
+    
     def getKingsideCastleMoves(self, row, col, moves):
         if self.board[row][col + 1] == '--' and self.board[row][col + 2] == '--':
             if not self.squareUnderAttack(row, col + 1) and not self.squareUnderAttack(row, col + 2):
                 moves.append(Move((row, col), (row, col + 2), self.board, is_castle_move=True))
 
-    """NhatHoang"""
+    
     def getQueensideCastleMoves(self, row, col, moves):
         if self.board[row][col - 1] == '--' and self.board[row][col - 2] == '--' and self.board[row][col - 3] == '--':
             if not self.squareUnderAttack(row, col - 1) and not self.squareUnderAttack(row, col - 2):
