@@ -8,7 +8,7 @@ import ChessEngine, ChessAI
 import sys
 from multiprocessing import Process, Queue
 
-"""NamHoangg"""
+
 BOARD_WIDTH = BOARD_HEIGHT = 720
 MOVE_LOG_PANEL_WIDTH = 560
 MOVE_LOG_PANEL_HEIGHT = BOARD_HEIGHT
@@ -193,7 +193,7 @@ def main():
         clock.tick(MAX_FPS)
         p.display.flip()
 
-"""NamHoang"""
+
 def drawGameState(screen, game_state, valid_moves, square_selected):
     """
     Responsible for all the graphics within current game state.
@@ -202,7 +202,7 @@ def drawGameState(screen, game_state, valid_moves, square_selected):
     highlightSquares(screen, game_state, valid_moves, square_selected)
     drawPieces(screen, game_state.board)  # draw pieces on top of those squares
 
-"""NamHoàng"""
+
 def drawBoard(screen):
     """
     Draw the squares on the board.
@@ -215,7 +215,7 @@ def drawBoard(screen):
             color = colors[((row + column) % 2)]
             p.draw.rect(screen, color, p.Rect(column * SQUARE_SIZE, row * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
 
-"""Hùng"""
+
 def highlightSquares(screen, game_state, valid_moves, square_selected):
     """
     Highlight square selected and moves for piece selected.
@@ -241,7 +241,6 @@ def highlightSquares(screen, game_state, valid_moves, square_selected):
                 if move.start_row == row and move.start_col == col:
                     screen.blit(s, (move.end_col * SQUARE_SIZE, move.end_row * SQUARE_SIZE))
 
-"""NamHoàng"""
 def drawPieces(screen, board):
     """
     Draw the pieces on the board using the current game_state.board
@@ -252,7 +251,7 @@ def drawPieces(screen, board):
             if piece != "--":
                 screen.blit(IMAGES[piece], p.Rect(column * SQUARE_SIZE, row * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
 
-"""Hưng"""
+
 def drawMoveLog(screen, game_state, font):
     """
     Draws the move log.
@@ -283,7 +282,7 @@ def drawMoveLog(screen, game_state, font):
         screen.blit(text_object, text_location)
         text_y += text_object.get_height() + line_spacing
 
-"""Hưng"""
+
 def drawEndGameText(screen, text):
     font = p.font.SysFont("Helvetica", 32, True, False)
     text_object = font.render(text, False, p.Color("gray"))
@@ -293,7 +292,7 @@ def drawEndGameText(screen, text):
     text_object = font.render(text, False, p.Color('black'))
     screen.blit(text_object, text_location.move(2, 2))
 
-"""Hưng"""
+
 def animateMove(move, screen, board, clock):
     """
     Animating a move
